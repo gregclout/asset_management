@@ -76,9 +76,9 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'port' => '/Applications/MAMP/tmp/mysql/mysql.sock',
-		'login' => 'greg',
-		'password' => 'greg',
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => 'root',
 		'database' => 'assets',
 		'prefix' => '',
 	);
@@ -87,8 +87,8 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'greg',
-		'password' => 'greg',
+		'login' => 'root',
+		'password' => 'root',
 		'database' => 'assets',
 		'prefix' => '',
 	);
