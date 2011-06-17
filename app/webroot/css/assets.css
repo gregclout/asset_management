@@ -1,0 +1,108 @@
+#fields input {
+	width: 300px;
+}
+
+#fields span {
+	float: left;
+	margin-right: 20px;
+}
+
+#fields div {
+	clear: both;
+	padding: 0;
+	padding-bottom: 30px;
+}
+
+form div#fields {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+/*textarea {
+	width: 96%;
+	margin-left: 1%;
+}*/
+
+div.message {
+	background: #A3D15F;
+	color: white;
+	font-size: 100%;
+	font-weight: normal;
+	border-radius: 10px;
+	padding-left: 20px;
+	margin-top: 10px;
+}
+
+#content {
+	width: 1020px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+#header {
+	width: 1020px;
+	margin: 30px auto 0 auto;
+}
+
+#header h1 {
+	padding: 20px 30px;
+}
+
+h2 {
+	padding-top: 10px;
+}
+
+.related h4 {
+	padding-top: 20px;
+}
+
+th.listname {
+	width: 600px;
+}
+
+td.actions {
+	text-align: left;
+}
+
+#ItemTemplate {
+	margin: 10px 6px;
+	clear: none;
+	float: left;
+}
+
+#ItemAddForm button,
+#ItemEditForm button {
+	background:#62af56;
+	background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
+	background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
+	border-color: #2d6324;
+	color: #000;
+	text-shadow: #8cee7c 0px 1px 0px;
+	font-weight:normal;
+	padding: 4px 8px;
+	background:#e6e49f;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f1f1d4), to(#e6e49f));
+	background-image: -moz-linear-gradient(top, #f1f1d4, #e6e49f);
+	color:#333;
+	border:1px solid #aaac62;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	text-decoration:none;
+	text-shadow: #fff 0px 1px 0px;
+	min-width: 0;
+	
+	margin: 10px 6px;
+}
+
+#ItemAddForm div.submit,
+#ItemEditForm div.submit {
+	margin-top: 30px;
+}
+
+#ItemAddForm h4,
+#ItemEditForm h4 {
+	clear: both;
+	margin: 0 6px;
+	margin-top: 20px;
+}
