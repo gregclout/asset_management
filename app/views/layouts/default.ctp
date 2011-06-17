@@ -22,7 +22,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('CakePHP: the rapid development php framework:'); ?>
+		<?php echo "iQmultimedia Asset Register - "; ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -38,6 +38,11 @@
 	<div id="container">
 		<div id="header">
 			<h1>Asset Register</h1>
+			<?php
+				echo $this->Form->create('Item', array('type' => 'get', 'action' => 'search', 'id' => 'ItemSearchForm'));
+				echo '<input name="keywords" type="text" id="ItemKeywords">';
+				echo $this->Form->end();
+			?>
 		</div>
 		<div id="content">
 

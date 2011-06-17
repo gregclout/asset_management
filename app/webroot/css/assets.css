@@ -106,3 +106,21 @@ td.actions {
 	margin: 0 6px;
 	margin-top: 20px;
 }
+
+#header h1 {
+	float:left;
+}
+
+#ItemSearchForm {
+	float: left;
+	width: 815px;
+	clear: none;
+}
+
+#ItemSearchForm input {
+	width: 815px;
+	height: 20px;
+	margin-top: 10px;
+	margin-left: 50px;
+	border-radius:10px;
+}
