@@ -89,6 +89,16 @@ class ItemsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			unset($this->Item->Field->validate['item_id']);
+			unset($this->Item->Relatedfile->validate['item_id']);
+			
+			foreach ($this->data['Relatedfile'] as $related_key => $file) {
+				$fileOK = $this->uploadFile('img/files', $file['file_url']);
+				debug($fileOK);
+				if (!empty($fileOK['url'][0])) {
+					$this->data['Relatedfile'][$related_key]['file_url'] = $fileOK['url'][0];
+					$this->data['Relatedfile'][$related_key]['thumb_file_url'] = $fileOK['url'][0];
+				}
+			}
 			if ($this->Item->saveAll($this->data)) {
 				$this->Session->setFlash(__('The item has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -112,9 +122,7 @@ class ItemsController extends AppController {
 				$templates[$template_key]['fields'][$field_key] = $field_values;
 			}
 		}
-		
-		
-		
+
 		$this->set('templateselect', $templateselect);
 		
 		$this->set('templates', $templates);

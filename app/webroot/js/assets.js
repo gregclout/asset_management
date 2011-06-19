@@ -11,3 +11,14 @@ function addField(name, value, auto) {
     event.preventDefault();
     $('#fields').append(inputHtml);
 }
+
+function addFile() {
+	var optionCount = ($('#files > div.input').size());
+	var inputHtml = '<div class="input text">'
+		+ '<input type="file" name="data[Relatedfile][' + optionCount + '][file_url]" id="RelatedfileFileUrl" />'
+		+ '<label for="Relatedfile' + optionCount + 'Description"></label>'
+		+ '<input name="data[Relatedfile][' + optionCount + '][description]" type="text" maxlength="512" id="RelatedfileDescription" />'
+		+ '</div>';
+	event.preventDefault();
+    $('#files').append(inputHtml);
+}

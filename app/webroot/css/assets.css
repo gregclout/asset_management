@@ -13,15 +13,11 @@
 	padding-bottom: 30px;
 }
 
-form div#fields {
+form div#fields,
+form div#files {
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
-
-/*textarea {
-	width: 96%;
-	margin-left: 1%;
-}*/
 
 div.message {
 	background: #A3D15F;

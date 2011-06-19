@@ -25,7 +25,7 @@
 </script>
 
 <div class="items form">
-<?php echo $this->Form->create('Item');?>
+<?php echo $this->Form->create('Item', array('type' => 'file'));?>
 		<h2>Add New Asset</h2>
 	<?php
 		echo $this->Form->input('Item.name');
@@ -38,6 +38,9 @@
 		echo '<h4>Additional Information</h4>';
 		echo '<div id="fields"></div>';
 		echo $this->Form->button('Add Field', array('OnClick' => 'addField(\'\',\'\', false)'));
+		echo '<h4>Related Files</h4>';
+		echo '<div id="files"></div>';
+		echo $this->Form->button('Add File', array('OnClick' => 'addFile()'));
 	?>
 <?php echo $this->Form->end(__('Add Asset', true));?>
 </div>

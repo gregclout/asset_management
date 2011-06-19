@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 17, 2011 at 12:33 AM
--- Server version: 5.1.37
--- PHP Version: 5.2.10
+-- Generation Time: Jun 19, 2011 at 08:19 AM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -25,13 +25,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `fields`
 --
 
-CREATE TABLE `fields` (
+CREATE TABLE IF NOT EXISTS `fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
   `name` varchar(512) NOT NULL,
   `value` varchar(512) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=106 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
 
 -- --------------------------------------------------------
 
@@ -39,12 +39,27 @@ CREATE TABLE `fields` (
 -- Table structure for table `items`
 --
 
-CREATE TABLE `items` (
+CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(512) NOT NULL,
   `note` varchar(2048) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relatedfiles`
+--
+
+CREATE TABLE IF NOT EXISTS `relatedfiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `file_url` varchar(512) NOT NULL,
+  `thumb_file_url` varchar(512) NOT NULL,
+  `description` varchar(512) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -52,7 +67,7 @@ CREATE TABLE `items` (
 -- Table structure for table `templates`
 --
 
-CREATE TABLE `templates` (
+CREATE TABLE IF NOT EXISTS `templates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fields` varchar(2048) NOT NULL,
   `name` varchar(512) NOT NULL,

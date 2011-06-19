@@ -37,6 +37,28 @@
 			</tr>
 		<?php endforeach; ?>
 		</table>
+		<?php endif; ?>
+		<h4>Related Files</h4>
+		<?php if (!empty($item['Relatedfile'])):?>
+		<table cellpadding = "0" cellspacing = "0">
+		<tr>
+			<th>Image</th>
+			<th>Description</th>
+		</tr>
+		<?php
+			$i = 0;
+			foreach ($item['Relatedfile'] as $file):
+				$class = null;
+				if ($i++ % 2 == 0) {
+					$class = ' class="altrow"';
+				}
+			?>
+			<tr<?php echo $class;?>>
+				<td><?php echo $file['file_url'];?></td>
+				<td><?php echo $file['description'];?></td>
+			</tr>
+		<?php endforeach; ?>
+		</table>
 	<?php endif; ?>
 	</div>
 </div>
