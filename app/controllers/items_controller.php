@@ -25,35 +25,58 @@ class ItemsController extends AppController {
 		if (!empty($keywords)) {
 			
 			$this->loadModel('Field');
-			$search_items = $this->Field->find('all', array('order' => array('Item.name ASC')));
+			$search_items_fields = $this->Field->find('all', array('order' => array('Item.name ASC')));
+			$this->loadModel('Relatedfile');
+			$search_items_files = $this->Relatedfile->find('all', array('order' => array('Item.name ASC')));
+			$items = $this->Item->find('all', array('order' => array('Item.name ASC')));
+			//debug($items);
 			$keywords = explode(' ', $keywords);
 			
 			$results = array();
 			foreach($keywords as $keyword) {
-				foreach ($search_items as $item_key => $item) {
-					if (!empty($item['Item']['id'])) {
-						foreach($item['Field'] as $field) {
-							// if the keyword is in the field
-							if (strpos(strtolower($field), strtolower($keyword)) !== false) {
-								if (!isset($results[$item['Item']['id']])) {
-									$results[$item['Item']['id']]['id'] = $item['Item']['id'];
-									$results[$item['Item']['id']]['name'] = $item['Item']['name'];
-									$results[$item['Item']['id']]['count'] = 1;
-								} else {
-									$results[$item['Item']['id']]['count'] = $results[$item['Item']['id']]['count']+1;
+				foreach ($items as $item_items) {
+					foreach ($item_items['Item'] as $item) {
+						// if the keyword is in the item
+						if (strpos(strtolower($item), strtolower($keyword)) !== false) {
+							if (!isset($results[$item_items['Item']['id']])) {
+								$results[$item_items['Item']['id']]['id'] = $item_items['Item']['id'];
+								$results[$item_items['Item']['id']]['name'] = $item_items['Item']['name'];
+								$results[$item_items['Item']['id']]['count'] = 1;
+							} else {
+								$results[$item_items['Item']['id']]['count'] = $results[$item_items['Item']['id']]['count']+1;
+							}
+						}
+					}
+				}
+				foreach ($search_items_fields as $search_item) {
+					if (!empty($search_item['Item']['id'])) {
+						foreach($search_item['Field'] as $item_key => $field) {
+							// dont count field id or item id
+							if ($item_key != 'id' && $item_key != 'item_id') {
+								// if the keyword is in the field
+								if (strpos(strtolower($field), strtolower($keyword)) !== false) {
+									if (!isset($results[$search_item['Item']['id']])) {
+										$results[$search_item['Item']['id']]['id'] = $search_item['Item']['id'];
+										$results[$search_item['Item']['id']]['name'] = $search_item['Item']['name'];
+										$results[$search_item['Item']['id']]['count'] = 1;
+									} else {
+										$results[$search_item['Item']['id']]['count'] = $results[$search_item['Item']['id']]['count']+1;
+									}
 								}
 							}
 						}
-						foreach ($item['Item'] as $field) {
-						// if the keyword is in the item
-							if (strpos(strtolower($field), strtolower($keyword)) !== false) {
-								if (!isset($results[$item['Item']['id']])) {
-									$results[$item['Item']['id']]['id'] = $item['Item']['id'];
-									$results[$item['Item']['id']]['name'] = $item['Item']['name'];
-									$results[$item['Item']['id']]['count'] = 1;
-								} else {
-									$results[$item['Item']['id']]['count'] = $results[$item['Item']['id']]['count']+1;
-								}
+					}
+				}
+				foreach ($search_items_files as $files_item) {
+					if (!empty($files_item['Item']['id'])) {
+						// if the keyword is in the file description
+						if (strpos(strtolower($files_item['Relatedfile']['description']), strtolower($keyword)) !== false) {
+							if (!isset($results[$files_item['Item']['id']])) {
+								$results[$files_item['Item']['id']]['id'] = $files_item['Item']['id'];
+								$results[$files_item['Item']['id']]['name'] = $files_item['Item']['name'];
+								$results[$files_item['Item']['id']]['count'] = 1;
+							} else {
+								$results[$files_item['Item']['id']]['count'] = $results[$files_item['Item']['id']]['count']+1;
 							}
 						}
 					}
