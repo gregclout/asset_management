@@ -20,7 +20,7 @@
 		<?php if (!empty($item['Field'])):?>
 		<table cellpadding = "0" cellspacing = "0">
 		<tr>
-			<th><?php __('Name'); ?></th>
+			<th class="col1"><?php __('Name'); ?></th>
 			<th><?php __('Value'); ?></th>
 		</tr>
 		<?php
@@ -42,7 +42,7 @@
 		<?php if (!empty($item['Relatedfile'])):?>
 		<table cellpadding = "0" cellspacing = "0">
 		<tr>
-			<th>Image</th>
+			<th class="col1">File</th>
 			<th>Description</th>
 		</tr>
 		<?php
@@ -54,7 +54,7 @@
 				}
 			?>
 			<tr<?php echo $class;?>>
-				<td><?php echo $file['file_url'];?></td>
+				<td><?php echo $this->html->link(str_replace('img/files/', '', $file['file_url']), '/'.$file['file_url']);?></td>
 				<td><?php echo $file['description'];?></td>
 			</tr>
 		<?php endforeach; ?>

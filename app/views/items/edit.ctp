@@ -1,7 +1,7 @@
 <?php echo $javascript->link('jquery-1.6.1.js'); ?>
 <?php echo $javascript->link('assets.js'); ?>
 <div class="items form">
-<?php echo $this->Form->create('Item');?>
+<?php echo $this->Form->create('Item', array('type' => 'file'));?>
 		<h2>Edit Asset</h2>
 	<?php
 		echo $this->Form->input('id');
@@ -30,9 +30,10 @@
 		foreach($this->data['Relatedfile'] as $file) {
 			$filename = str_replace('img/files/', '', $file['file_url']);
 			echo '<div class="file"><span class="filecontent"><p>'.$filename.'</p><p class="description">'.$file['description'].'</p></span><span>'.$this->Form->button('Remove File', array('OnClick' => 'removeFile('.$file['id'].')')).'</span></div>';
-			debug($file);
 		}
-		//debug($this->data);
+		echo '<div id="files"></div>';
+		echo '<div id="removefiles"></div>';
+		echo $this->Form->button('Add File', array('OnClick' => 'addFile()'));
 	?>
 <?php echo $this->Form->end(__('Save Asset', true));?>
 </div>

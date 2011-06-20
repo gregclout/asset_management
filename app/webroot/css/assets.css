@@ -138,3 +138,7 @@ span.filecontent p.description {
 	color: grey;
 	font-style: italic;
 }
+
+th.col1 {
+	width: 300px;
+}

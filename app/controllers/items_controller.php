@@ -2,7 +2,7 @@
 class ItemsController extends AppController {
 
 	var $name = 'Items';
-	var $helpers = array('Javascript' => array('jquery'));
+	var $helpers = array('Javascript' => array('jquery'), 'html');
 
 	function index() {
 		$this->Item->recursive = 0;
@@ -158,6 +158,29 @@ class ItemsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			unset($this->Item->Field->validate['item_id']);
+			unset($this->Item->Relatedfile->validate['item_id']);
+			
+			if (!empty($this->data['removeFile'])) {
+				foreach($this->data['removeFile'] as $file) {
+					if (!empty($file['id'])) {
+						$this->Item->Relatedfile->delete($file['id']);
+					}
+				}
+			}
+			
+			foreach ($this->data['Relatedfile'] as $related_key => $file) {
+				if (!empty($file['file_url'])) {
+					$fileOK = $this->uploadFile('img/files', $file['file_url']);
+					if (!empty($fileOK['url'][0])) {
+						$this->data['Relatedfile'][$related_key]['file_url'] = $fileOK['url'][0];
+						$this->data['Relatedfile'][$related_key]['thumb_file_url'] = $fileOK['url'][0];
+					}
+				} else {
+					unset($this->data['Relatedfile'][$related_key]);
+				}
+			}
+			
 			if ($this->Item->saveAll($this->data)) {
 				$this->Session->setFlash(__('The item has been saved', true));
 				$this->redirect(array('action' => 'index'));

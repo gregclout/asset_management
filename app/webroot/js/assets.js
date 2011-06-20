@@ -22,3 +22,12 @@ function addFile() {
 	event.preventDefault();
     $('#files').append(inputHtml);
 }
+
+function removeFile(id) {
+	var container = $(event.target).parent().parent();
+	container.hide();
+	var optionCount = ($('#removefiles > input').size());
+	var inputHtml = '<input type="hidden" name="data[removeFile][' + optionCount + '][id]" value="' + id + '" />';
+	event.preventDefault();
+	$('#removefiles').append(inputHtml);
+}
