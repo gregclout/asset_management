@@ -120,3 +120,21 @@ td.actions {
 	margin-left: 50px;
 	border-radius:10px;
 }
+
+div.file {
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+div.file span {
+	float: left;
+}
+
+div.file span.filecontent {
+	width: 520px;
+}
+
+span.filecontent p.description {
+	color: grey;
+	font-style: italic;
+}
