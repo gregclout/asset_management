@@ -54,7 +54,7 @@
 				}
 			?>
 			<tr<?php echo $class;?>>
-				<td><?php echo $this->html->link(str_replace('img/files/', '', $file['file_url']), '/'.$file['file_url']);?></td>
+				<td><?php echo $this->html->link(str_replace('files/', '', $file['file_url']), '/'.$file['file_url']);?></td>
 				<td><?php echo $file['description'];?></td>
 			</tr>
 		<?php endforeach; ?>

@@ -115,7 +115,7 @@ class ItemsController extends AppController {
 			unset($this->Item->Relatedfile->validate['item_id']);
 			
 			foreach ($this->data['Relatedfile'] as $related_key => $file) {
-				$fileOK = $this->uploadFile('img/files', $file['file_url']);
+				$fileOK = $this->uploadFile('files', $file['file_url']);
 				debug($fileOK);
 				if (!empty($fileOK['url'][0])) {
 					$this->data['Relatedfile'][$related_key]['file_url'] = $fileOK['url'][0];
@@ -171,7 +171,7 @@ class ItemsController extends AppController {
 			
 			foreach ($this->data['Relatedfile'] as $related_key => $file) {
 				if (!empty($file['file_url'])) {
-					$fileOK = $this->uploadFile('img/files', $file['file_url']);
+					$fileOK = $this->uploadFile('files', $file['file_url']);
 					if (!empty($fileOK['url'][0])) {
 						$this->data['Relatedfile'][$related_key]['file_url'] = $fileOK['url'][0];
 						$this->data['Relatedfile'][$related_key]['thumb_file_url'] = $fileOK['url'][0];

@@ -28,7 +28,7 @@
 		echo $this->Form->button('Add Field', array('OnClick' => 'addField()'));
 		echo '<h4>Related Files</h4>';
 		foreach($this->data['Relatedfile'] as $file) {
-			$filename = str_replace('img/files/', '', $file['file_url']);
+			$filename = str_replace('files/', '', $file['file_url']);
 			echo '<div class="file"><span class="filecontent"><p>'.$filename.'</p><p class="description">'.$file['description'].'</p></span><span>'.$this->Form->button('Remove File', array('OnClick' => 'removeFile('.$file['id'].')')).'</span></div>';
 		}
 		echo '<div id="files"></div>';
