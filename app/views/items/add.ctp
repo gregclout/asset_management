@@ -1,28 +1,21 @@
-<?php echo $javascript->link('jquery-1.6.1.js'); ?>
-<?php echo $javascript->link('assets.js'); ?>
-<script>
-	function addFields() {
-		var selectedTemplate = $('#ItemTemplate').val();
-		var functionname = 'addFields' + selectedTemplate +'()';
-		
-		$('#fields > div.templated').remove();
-		
-		eval(functionname);
-		event.preventDefault();
+<?php
+	$jsBlock = 'var templateFields = [];';
+
+	$i = 0;
+	foreach ($templates as $template) {
+		$jsBlock .= "\n".'templateFields['.$i.'] = [];';
+		$j = 0;
+		foreach($template['fields'] as $field) {
+			$jsBlock .= "\n".'templateFields['.$i.']['.$j.'] = [\''.trim($field[0]).'\', \''.(!empty($field[1]) ? trim($field[1]) : '').'\'];';
+			$j++;
+		}
+		$i++;
 	}
 	
-	<?php 
-		$i = 0;
-		foreach ($templates as $template_key => $template) { 
-		echo "function addFields".$i." () { ";
-			foreach($template['fields'] as $field_key => $field) {
-				echo "addField('".trim($field[0])."',".(!empty($field[1]) ? "'".trim($field[1])."'" : "''").", true);event.preventDefault();";
-			}
-		echo '}';
-		$i++;
-		}
-	?>
-</script>
+	$javascript->codeBlock($jsBlock, array('inline' => false));
+	$javascript->link('jquery-1.6.1.js', false);
+	$javascript->link('assets.js', false);
+?>
 
 <div class="items form">
 <?php echo $this->Form->create('Item', array('type' => 'file'));?>
@@ -34,13 +27,13 @@
 		echo $this->Form->textarea('Item.note', array('label' => 'Notes'));
 		echo '</div>';
 		echo $this->Form->select('template', $templateselect, null, array('empty' => false));
-		echo $this->Form->button('Import fields from template', array('OnClick' => 'addFields()'));
+		echo $this->Form->button('Import fields from template', array('id' => 'importfields'));
 		echo '<h4>Additional Information</h4>';
 		echo '<div id="fields"></div>';
-		echo $this->Form->button('Add Field', array('OnClick' => 'addField(\'\',\'\', false)'));
+		echo $this->Form->button('Add Field', array('id' => 'addfield'));
 		echo '<h4>Related Files</h4>';
 		echo '<div id="files"></div>';
-		echo $this->Form->button('Add File', array('OnClick' => 'addFile()'));
+		echo $this->Form->button('Add File', array('id' => 'addfile'));
 	?>
 <?php echo $this->Form->end(__('Add Asset', true));?>
 </div>

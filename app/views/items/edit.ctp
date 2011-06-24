@@ -25,15 +25,15 @@
 		    }
 		}
 		echo '</div>';
-		echo $this->Form->button('Add Field', array('OnClick' => 'addField()'));
+		echo $this->Form->button('Add Field', array('id' => 'addfield'));
 		echo '<h4>Related Files</h4>';
 		foreach($this->data['Relatedfile'] as $file) {
 			$filename = str_replace('files/', '', $file['file_url']);
-			echo '<div class="file"><span class="filecontent"><p>'.$filename.'</p><p class="description">'.$file['description'].'</p></span><span>'.$this->Form->button('Remove File', array('OnClick' => 'removeFile('.$file['id'].')')).'</span></div>';
+			echo '<div class="file"><span class="filecontent"><p>'.$filename.'</p><p class="description">'.$file['description'].'</p></span><span>'.$this->Form->button('Remove File', array('id' => 'removefile', 'fileid' => $file['id'])).'</span></div>';
 		}
 		echo '<div id="files"></div>';
 		echo '<div id="removefiles"></div>';
-		echo $this->Form->button('Add File', array('OnClick' => 'addFile()'));
+		echo $this->Form->button('Add File', array('id' => 'addfile'));
 	?>
 <?php echo $this->Form->end(__('Save Asset', true));?>
 </div>
