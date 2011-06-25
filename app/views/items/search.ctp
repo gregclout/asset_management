@@ -6,12 +6,19 @@
 			<th class="actions"></th>
 	</tr>
 	<?php
-	$i = 0;
-	foreach ($items as $item):
-		$class = null;
-		if ($i++ % 2 == 0) {
-			$class = ' class="altrow"';
-		}
+	
+	if (count($items) == 0) {
+	?>
+		<tr><td>Sorry, there were no matching assets.</td><td>&nbsp;</td></tr>
+	<?php
+	} else {
+	
+		$i = 0;
+		foreach ($items as $item) {
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $item['name']; ?>&nbsp;</td>
@@ -21,7 +28,10 @@
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $item['id'])); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php
+		} 
+	} 
+	?>
 	</table>
 </div>
 <div class="actions">

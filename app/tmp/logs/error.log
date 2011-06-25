@@ -102,3 +102,6 @@
 2011-06-20 07:04:39 Warning: Warning (2): Invalid argument supplied for foreach() in [C:\Documents and Settings\Administrator\asset_management\app\controllers\items_controller.php, line 172]
 2011-06-20 07:16:00 Warning: Warning (2): Invalid argument supplied for foreach() in [C:\Documents and Settings\Administrator\asset_management\app\controllers\items_controller.php, line 172]
 2011-06-23 06:57:37 Warning: Warning (2): Invalid argument supplied for foreach() in [C:\Documents and Settings\Administrator\asset_management\app\controllers\items_controller.php, line 172]
+2011-06-25 05:29:09 Warning: Warning (2): preg_match() expects parameter 2 to be string, array given in [C:\Documents and Settings\Administrator\asset_management\cake\libs\validation.php, line 946]
+2011-06-25 05:29:13 Warning: Warning (2): Invalid argument supplied for foreach() in [C:\Documents and Settings\Administrator\asset_management\app\controllers\items_controller.php, line 117]
+2011-06-25 05:34:37 Warning: Warning (2): Invalid argument supplied for foreach() in [C:\Documents and Settings\Administrator\asset_management\app\views\items\search.ctp, line 10]

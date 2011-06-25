@@ -60,3 +60,5 @@
 2011-06-20 07:09:14 Debug: Notice (8): Undefined property: View::$html in [C:\Documents and Settings\Administrator\asset_management\app\views\items\view.ctp, line 57]
 2011-06-20 07:16:00 Debug: Notice (8): Undefined index: Relatedfile in [C:\Documents and Settings\Administrator\asset_management\app\controllers\items_controller.php, line 172]
 2011-06-23 06:57:37 Debug: Notice (8): Undefined index: Relatedfile in [C:\Documents and Settings\Administrator\asset_management\app\controllers\items_controller.php, line 172]
+2011-06-25 05:29:13 Debug: Notice (8): Undefined index: Relatedfile in [C:\Documents and Settings\Administrator\asset_management\app\controllers\items_controller.php, line 117]
+2011-06-25 05:34:37 Debug: Notice (8): Undefined variable: items in [C:\Documents and Settings\Administrator\asset_management\app\views\items\search.ctp, line 10]

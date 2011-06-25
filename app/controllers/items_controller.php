@@ -106,7 +106,15 @@ class ItemsController extends AppController {
 			
 			uasort($results, 'cmp');
 		}
-		$this->set('items', $results);
+		// if only one result redirect
+		if (count($results) == 1) {
+			debug($results);
+			$item = array_pop($results);
+			$id = $item['id'];
+			$this->redirect(array('action' => 'view', $id));
+		} else {
+			$this->set('items', $results);
+		}
 	}
 
 	function add() {
