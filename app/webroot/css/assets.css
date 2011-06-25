@@ -1,5 +1,5 @@
 #fields input {
-	width: 300px;
+	width: 315px;
 }
 
 #fields span {
@@ -10,7 +10,7 @@
 #fields div {
 	clear: both;
 	padding: 0;
-	padding-bottom: 30px;
+	/*padding-bottom: 30px;*/
 }
 
 form div#fields,
@@ -33,6 +33,11 @@ div.message {
 	width: 1020px;
 	margin: 0 auto;
 	border-radius: 10px;
+}
+
+#removefields,
+#removefiles {
+	display: none;
 }
 
 #header {
@@ -87,8 +92,12 @@ td.actions {
 	text-decoration:none;
 	text-shadow: #fff 0px 1px 0px;
 	min-width: 0;
-	
 	margin: 10px 6px;
+}
+
+#ItemAddForm button.short,
+#ItemEditForm button.short {
+	margin: 5px 0;
 }
 
 #ItemAddForm div.submit,
@@ -131,7 +140,7 @@ div.file span {
 }
 
 div.file span.filecontent {
-	width: 520px;
+	width: 672px;
 }
 
 span.filecontent p.description {

@@ -24,8 +24,11 @@ function addField(name, value, auto) {
     var inputHtml = '<div class="input text' + autoValue + '"><span><label for="Field' + optionCount + 'Name">'
         + '</label><input id="Field' + optionCount + 'Name" type="text" name="data[Field][' + optionCount + '][name]" value="'+ name +'" /></span>'
 		+ '<span><label for="Field' + optionCount + 'Value">'
-        + '</label><input id="Field' + optionCount + 'Value" type="text" name="data[Field][' + optionCount + '][value]" value="'+ value +'" /></span></div>'
+        + '</label><input id="Field' + optionCount + 'Value" type="text" name="data[Field][' + optionCount + '][value]" value="'+ value +'" /></span>'
+		+ '<button type="submit" class="removefield">&mdash;</button>'
+		+ '</div>';
     $('#fields').append(inputHtml);
+	$('.removefield').bind('click', removeField);
 }
 
 function addFile(evt) {
@@ -37,19 +40,26 @@ function addFile(evt) {
 		+ '<input name="data[Relatedfile][' + optionCount + '][description]" type="text" maxlength="512" id="RelatedfileDescription" />'
 		+ '</div>';
     $('#files').append(inputHtml);
-    
 }
 
 function removeFile(evt) {
 	evt.preventDefault();
 	var id = $(evt.target).attr('fileid');
 	var container = $(evt.target).parent().parent();
-	container.hide();
+	container.remove();
 	var optionCount = ($('#removefiles > input').size());
 	var inputHtml = '<input type="hidden" name="data[removeFile][' + optionCount + '][id]" value="' + id + '" />';
-	
 	$('#removefiles').append(inputHtml);
+}
 
+function removeField(evt) {
+	evt.preventDefault();
+	var id = $(evt.target).attr('fieldid');
+	var container = $(evt.target).parent();
+	container.remove();
+	var optionCount = ($('#removefields > input').size());
+	var inputHtml = '<input type="hidden" name="data[removeField][' + optionCount + '][id]" value="' + id + '" />';
+	$('#removefields').append(inputHtml);
 }
 
 $(document).ready(function() {
@@ -57,5 +67,6 @@ $(document).ready(function() {
 	$('#addfield').bind('click', {name:'', value:'', auto:false}, addFieldEventHandler);
 	$('#addfile').bind('click', addFile);
 	$('#removefile').bind('click', removeFile);
+	$('.removefield').bind('click', removeField);
 	
 });

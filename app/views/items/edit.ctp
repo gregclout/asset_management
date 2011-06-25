@@ -20,7 +20,9 @@
 		        echo $form->input("Field.$i.name", array('label' => '', 'div' => false));
 		        echo '</span><span>';
 		        echo $form->input("Field.$i.value", array('label' => '', 'div' => false));
-		        echo '</span></div>';
+		        echo '</span>';
+				echo $this->Form->button('&mdash;', array('class' => 'removefield', 'fieldid' => $field['id']));
+				echo '</div>';
 		        $i++;
 		    }
 		}
@@ -29,9 +31,10 @@
 		echo '<h4>Related Files</h4>';
 		foreach($this->data['Relatedfile'] as $file) {
 			$filename = str_replace('files/', '', $file['file_url']);
-			echo '<div class="file"><span class="filecontent"><p>'.$filename.'</p><p class="description">'.$file['description'].'</p></span><span>'.$this->Form->button('Remove File', array('id' => 'removefile', 'fileid' => $file['id'])).'</span></div>';
+			echo '<div class="file"><span class="filecontent"><p>'.$filename.'</p><p class="description">'.$file['description'].'</p></span><span>'.$this->Form->button('&mdash;', array('id' => 'removefile', 'fileid' => $file['id'])).'</span></div>';
 		}
 		echo '<div id="files"></div>';
+		echo '<div id="removefields"></div>';
 		echo '<div id="removefiles"></div>';
 		echo $this->Form->button('Add File', array('id' => 'addfile'));
 	?>

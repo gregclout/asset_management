@@ -124,7 +124,7 @@ class ItemsController extends AppController {
 			
 			foreach ($this->data['Relatedfile'] as $related_key => $file) {
 				$fileOK = $this->uploadFile('files', $file['file_url']);
-				debug($fileOK);
+				
 				if (!empty($fileOK['url'][0])) {
 					$this->data['Relatedfile'][$related_key]['file_url'] = $fileOK['url'][0];
 					$this->data['Relatedfile'][$related_key]['thumb_file_url'] = $fileOK['url'][0];
@@ -169,27 +169,40 @@ class ItemsController extends AppController {
 			unset($this->Item->Field->validate['item_id']);
 			unset($this->Item->Relatedfile->validate['item_id']);
 			
-			if (!empty($this->data['removeFile'])) {
-				foreach($this->data['removeFile'] as $file) {
-					if (!empty($file['id'])) {
-						$this->Item->Relatedfile->delete($file['id']);
+			// do file upload
+			if (!empty($this->data['Relatedfile'])) {
+				foreach ($this->data['Relatedfile'] as $related_key => $file) {
+					if (!empty($file['file_url'])) {
+						$fileOK = $this->uploadFile('files', $file['file_url']);
+						if (!empty($fileOK['url'][0])) {
+							$this->data['Relatedfile'][$related_key]['file_url'] = $fileOK['url'][0];
+							$this->data['Relatedfile'][$related_key]['thumb_file_url'] = $fileOK['url'][0];
+						}
+					} else {
+						unset($this->data['Relatedfile'][$related_key]);
 					}
-				}
-			}
-			
-			foreach ($this->data['Relatedfile'] as $related_key => $file) {
-				if (!empty($file['file_url'])) {
-					$fileOK = $this->uploadFile('files', $file['file_url']);
-					if (!empty($fileOK['url'][0])) {
-						$this->data['Relatedfile'][$related_key]['file_url'] = $fileOK['url'][0];
-						$this->data['Relatedfile'][$related_key]['thumb_file_url'] = $fileOK['url'][0];
-					}
-				} else {
-					unset($this->data['Relatedfile'][$related_key]);
 				}
 			}
 			
 			if ($this->Item->saveAll($this->data)) {
+				// if files are marked to be removed, remove them
+				if (!empty($this->data['removeFile'])) {
+					foreach($this->data['removeFile'] as $file) {
+						if (!empty($file['id'])) {
+							$this->Item->Relatedfile->delete($file['id']);
+						}
+					}
+				}
+				
+				// if fields are marked to be removed, remove them
+				if (!empty($this->data['removeField'])) {
+					foreach($this->data['removeField'] as $field) {
+						if (!empty($field['id'])) {
+							$this->Item->Field->delete($field['id']);
+						}
+					}
+				}
+				
 				$this->Session->setFlash(__('The item has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
