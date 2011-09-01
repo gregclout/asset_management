@@ -6,6 +6,7 @@ class ItemsController extends AppController {
 
 	function index() {
 		$this->Item->recursive = 0;
+		$this->paginate = array('order' => 'Item.name ASC');
 		$this->set('items', $this->paginate());
 	}
 
